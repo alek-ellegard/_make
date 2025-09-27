@@ -18,5 +18,7 @@ echo-mk-dir:
 
 mk-help:
 	@echo
+	@echo " make dates"
+	@echo
 	@echo " make fzf-crud-help"
 	@echo

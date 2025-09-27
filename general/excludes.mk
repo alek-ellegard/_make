@@ -2,7 +2,9 @@ EXCLUDE_DIRS := .git __pycache__ .pytest_cache .mypy_cache venv .venv .hatch env
   node_modules .next .nuxt coverage .sass-cache \
   target vendor bin \
   .tox .coverage htmlcov .idea .vscode .DS_Store \
-  .ruff_cache
+  .ruff_cache \
+	.claude \
+	.tmp
 
 EXCLUDE_PATTERNS := "*.pyc" "*.pyo" "*.pyd" "__pycache__" \
   "*.o" "*.so" "*.dylib" "*.dll" \

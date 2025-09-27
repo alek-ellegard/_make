@@ -4,9 +4,15 @@
 #   - select_project
 #   - select_ticket_for_project
 
+# --
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+MK_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
+echo "MK_DIR: $MK_DIR"
+# --
+#
 # ---
 
-source ~/code/code/_make/ui/ui.sh
+source $MK_DIR/ui/ui.sh
 
 ui_selected() {
   _log "selected" "▶" "${_COLOR_SUCCESS-}" "$@" >&2

@@ -21,6 +21,4 @@ dates:
 	@echo
 	@echo "date: $(date)"
 	@echo "time: $(time)"
-	@echo "yday: $(yday)"
-	@echo "date-2d: $(date-2d)"
 	@echo

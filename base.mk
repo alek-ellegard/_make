@@ -1,5 +1,6 @@
 # ---
 
+
 # ---
 # CRUD
 #
@@ -20,4 +21,7 @@ r-readme:
 
 cat-readme:
 	@bat README.md
+
+echo-git-root:
+	echo "$(MK_DIR)"
 

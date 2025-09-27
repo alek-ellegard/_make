@@ -15,3 +15,6 @@ test-index-mk:
 
 echo-mk-dir:
 	echo "$(MK_DIR)"
+
+mk-help:
+	@bash -c "cd fzf && make help"

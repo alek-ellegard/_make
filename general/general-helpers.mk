@@ -3,9 +3,6 @@
 pwd := $(shell pwd)
 include ~/code/code/_make/general/excludes.mk
 
-nvim-f:
-	@nvim $(f)
-
 nvim:
 	@nvim .
 code:

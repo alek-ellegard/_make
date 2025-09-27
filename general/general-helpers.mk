@@ -1,7 +1,7 @@
 # --------
 #  helpers
 pwd := $(shell pwd)
-include ~/code/code/_make/general/excludes.mk
+include $(MK_DIR)/general/excludes.mk
 
 nvim:
 	@nvim .
@@ -15,6 +15,7 @@ gitignore:
 pwd:
 	@echo "$(pwd)"
 
+pwd-cp: pwd-copy
 pwd-copy:
 	@make pwd
 	@make pwd | pbcopy

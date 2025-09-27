@@ -1,5 +1,5 @@
 
-#include ~/code/code/_make/hatch/<dir>/*.mk
+#include $(MK_DIR)/hatch/<dir>/*.mk
 
 test-hatch-index:
 	make pwd

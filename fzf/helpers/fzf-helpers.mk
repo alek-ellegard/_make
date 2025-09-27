@@ -1,6 +1,5 @@
 # Get the directory of this include file
 FZF_HELPERS_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
-MK_DIR := ~/code/code/_make
 
 # Define shell function to source both helper scripts
 define FZF_RUN

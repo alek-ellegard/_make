@@ -5,7 +5,7 @@
 # Create new file with FZF directory selection
 new:
 	@echo
-	@bash -c 'source $(MK_PATH)/ui/ui.sh && \
+	@bash -c 'source $(UI_SH) && \
 		source $(MK_PATH)/fzf/crud/crud.sh && \
 		dir=$$(select_dir "." "Select directory: ") || exit 1; \
 		info "Selected: $$dir"; \
@@ -17,7 +17,7 @@ new:
 # Quick file selector and reader with arrow navigation
 view:
 	@echo
-	@bash -c 'source $(MK_PATH)/ui/ui.sh && \
+	@bash -c 'source $(UI_SH) && \
 		source $(MK_PATH)/fzf/crud/crud.sh && \
 		exclude_args=$$(_get_exclude_args) && \
 		eval "find . $$exclude_args -type f -print" 2>/dev/null | \
@@ -39,7 +39,7 @@ view:
 # Quick file editor
 edit:
 	@echo
-	@bash -c 'source $(MK_PATH)/ui/ui.sh && \
+	@bash -c 'source $(UI_SH) && \
 		source $(MK_PATH)/fzf/crud/crud.sh && \
 		file=$$(select_file "." "Edit file: ") || exit 1; \
 		$${EDITOR:-nvim} "$$file"'
@@ -47,7 +47,7 @@ edit:
 # File path display with clipboard copy
 f-pwd:
 	@echo
-	@bash -c 'source $(MK_PATH)/ui/ui.sh && \
+	@bash -c 'source $(UI_SH) && \
 		source $(MK_PATH)/fzf/crud/crud.sh && \
 		exclude_args=$$(_get_exclude_args) && \
 		file=$$(eval "find . $$exclude_args -type f -print" 2>/dev/null | \

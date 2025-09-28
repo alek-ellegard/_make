@@ -11,3 +11,4 @@ gh-feat-pr-merge:
 	git push
 	gh pr create --fill
 	gh pr merge -s -d
+	git pull

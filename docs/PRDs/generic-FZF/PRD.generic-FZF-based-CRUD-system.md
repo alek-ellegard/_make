@@ -1,4 +1,4 @@
-Looking at your repository, I can see you're building a sophisticated Makefile-based workflow system with modular `.mk` includes and shell helpers. You've already established strong patterns with UI components, FZF integration, and file operations. Let me analyze your use case and create a focused PRD.## PRD: Generic FZF-Based CRUD System
+# generic FZF logic for easy Makefile integration
 
 ### conceptual foundation
 

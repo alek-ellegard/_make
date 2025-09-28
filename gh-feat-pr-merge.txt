@@ -1,0 +1,3 @@
+gsw -c fix/path-ui-sh
+gh pr create --fill
+gh pr merge -s -d

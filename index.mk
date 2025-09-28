@@ -1,5 +1,6 @@
 GIT_ROOT := $(shell git rev-parse --show-toplevel)
 
+
 # ---
 # ~/.zshrc 
 # 
@@ -17,12 +18,18 @@ include $(MK_PATH)/fzf/*.mk
 include $(MK_PATH)/ui/*.mk
 include $(MK_PATH)/ai/*.mk
 
-test-index-mk:
+mk-test-index-mk:
+	@echo
+	@echo "$(pwd)"
 	make dates
-	make echo-mk-dir
+	make mk-echo
+	@echo
 
-echo-mk-dir:
-	echo "$(MK_PATH)"
+mk-echo:
+	@echo
+	@echo "$(pwd)"
+	@echo "$(MK_PATH)"
+	@echo
 
 mk-help:
 	@echo

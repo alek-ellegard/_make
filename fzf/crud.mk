@@ -41,3 +41,37 @@ edit:
 		file=$$(select_file "." "Edit file: ") || exit 1; \
 		$${EDITOR:-nvim} "$$file"'
 
+# File path display with clipboard copy
+f-pwd:
+	@bash -c 'source $(MK_DIR)/ui/ui.sh && \
+		source $(MK_DIR)/fzf/crud/crud.sh && \
+		exclude_args=$$(_get_exclude_args) && \
+		file=$$(eval "find . $$exclude_args -type f -print" 2>/dev/null | \
+			sed "s|^\\./||" | \
+			grep -v "^$$" | \
+			sort | \
+			fzf --prompt="Select file for path: " \
+			    --height=80% \
+			    --layout=reverse \
+			    --border \
+			    --preview="if command -v bat >/dev/null; then bat --color=always --style=numbers {}; else cat {}; fi" \
+			    --preview-window=right:60%:wrap \
+			    --bind="?:toggle-preview" \
+			    --bind="esc:abort" \
+			    --header="Arrows=nav, ENTER=select, ESC=exit, ?=toggle preview") || exit 1; \
+		rel_path="./$$file" && \
+		abs_path="$$(cd "$$(dirname "$$file")" && pwd)/$$(basename "$$file")" && \
+		echo "" && \
+		info "Relative path: $$rel_path" && \
+		info "Absolute path: $$abs_path" && \
+		echo "" && \
+		if command -v pbcopy >/dev/null 2>&1; then \
+			echo "$$abs_path" | pbcopy && \
+			ok "Absolute path copied to clipboard"; \
+		elif command -v xclip >/dev/null 2>&1; then \
+			echo "$$abs_path" | xclip -selection clipboard && \
+			ok "Absolute path copied to clipboard"; \
+		else \
+			warn "Clipboard tool not found (pbcopy/xclip)"; \
+		fi'
+

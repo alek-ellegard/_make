@@ -4,6 +4,7 @@
 
 # Create new file with FZF directory selection
 new:
+	@echo
 	@bash -c 'source $(MK_DIR)/ui/ui.sh && \
 		source $(MK_DIR)/fzf/crud/crud.sh && \
 		dir=$$(select_dir "." "Select directory: ") || exit 1; \
@@ -15,6 +16,7 @@ new:
 
 # Quick file selector and reader with arrow navigation
 view:
+	@echo
 	@bash -c 'source $(MK_DIR)/ui/ui.sh && \
 		source $(MK_DIR)/fzf/crud/crud.sh && \
 		exclude_args=$$(_get_exclude_args) && \
@@ -36,6 +38,7 @@ view:
 
 # Quick file editor
 edit:
+	@echo
 	@bash -c 'source $(MK_DIR)/ui/ui.sh && \
 		source $(MK_DIR)/fzf/crud/crud.sh && \
 		file=$$(select_file "." "Edit file: ") || exit 1; \
@@ -43,6 +46,7 @@ edit:
 
 # File path display with clipboard copy
 f-pwd:
+	@echo
 	@bash -c 'source $(MK_DIR)/ui/ui.sh && \
 		source $(MK_DIR)/fzf/crud/crud.sh && \
 		exclude_args=$$(_get_exclude_args) && \

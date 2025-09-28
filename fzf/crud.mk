@@ -4,8 +4,9 @@
 
 # Create new file with FZF directory selection
 new:
-	@bash -c 'source $(MK_DIR)/ui/ui.sh && \
-		source $(MK_DIR)/fzf/crud/crud.sh && \
+	@echo
+	@bash -c 'source $(MK_PATH)/ui/ui.sh && \
+		source $(MK_PATH)/fzf/crud/crud.sh && \
 		dir=$$(select_dir "." "Select directory: ") || exit 1; \
 		info "Selected: $$dir"; \
 		read -p "File path (can include subdirs): " name && \
@@ -15,8 +16,9 @@ new:
 
 # Quick file selector and reader with arrow navigation
 view:
-	@bash -c 'source $(MK_DIR)/ui/ui.sh && \
-		source $(MK_DIR)/fzf/crud/crud.sh && \
+	@echo
+	@bash -c 'source $(MK_PATH)/ui/ui.sh && \
+		source $(MK_PATH)/fzf/crud/crud.sh && \
 		exclude_args=$$(_get_exclude_args) && \
 		eval "find . $$exclude_args -type f -print" 2>/dev/null | \
 		sed "s|^\./||" | \
@@ -36,15 +38,17 @@ view:
 
 # Quick file editor
 edit:
-	@bash -c 'source $(MK_DIR)/ui/ui.sh && \
-		source $(MK_DIR)/fzf/crud/crud.sh && \
+	@echo
+	@bash -c 'source $(MK_PATH)/ui/ui.sh && \
+		source $(MK_PATH)/fzf/crud/crud.sh && \
 		file=$$(select_file "." "Edit file: ") || exit 1; \
 		$${EDITOR:-nvim} "$$file"'
 
 # File path display with clipboard copy
 f-pwd:
-	@bash -c 'source $(MK_DIR)/ui/ui.sh && \
-		source $(MK_DIR)/fzf/crud/crud.sh && \
+	@echo
+	@bash -c 'source $(MK_PATH)/ui/ui.sh && \
+		source $(MK_PATH)/fzf/crud/crud.sh && \
 		exclude_args=$$(_get_exclude_args) && \
 		file=$$(eval "find . $$exclude_args -type f -print" 2>/dev/null | \
 			sed "s|^\\./||" | \

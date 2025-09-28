@@ -1,9 +1,10 @@
 # Get the directory of this include file
 FZF_HELPERS_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 
+
 # Define shell function to source both helper scripts
 define FZF_RUN
-	bash -c 'source $(MK_DIR)/ui/ui.sh && source $(MK_DIR)/fzf/helpers/fzf-helpers.sh && $(1)'
+	bash -c 'source $(MK_PATH)/ui/ui.sh && source $(MK_PATH)/fzf/helpers/fzf-helpers.sh && $(1)'
 endef
 
 # UI-enhanced project selection

@@ -5,9 +5,6 @@ cursor:
 claude:
 	claude $(p)
 
-test-ai-index-mk:
-	make cursor
-
 help-ai-index-mk:
 	@echo
 	@echo "code:"

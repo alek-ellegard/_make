@@ -23,5 +23,5 @@ cat-readme:
 	@bat README.md
 
 echo-git-root:
-	echo "$(MK_DIR)"
+	echo "$(MK_PATH)"
 

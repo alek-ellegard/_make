@@ -1,7 +1,7 @@
 # --------
 #  helpers
 pwd := $(shell pwd)
-include $(MK_DIR)/general/excludes.mk
+include $(MK_PATH)/general/excludes.mk
 
 nvim:
 	@nvim .

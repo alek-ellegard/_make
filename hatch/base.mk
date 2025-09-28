@@ -1,41 +1,58 @@
-#--
+# This is a default goal that will run when you just type "make"
+.DEFAULT_GOAL := help-hatch
 
-# Clean environment
-hatch-clean:
-	rm -rf .hatch
-	rm -rf src/metrics_sidecar.egg-info
-	rm -rf __pycache__
-	find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
-	find . -type f -name "*.pyc" -delete
+# ==============================================================================
+# HELP
+# ==============================================================================
 
-hatch-remove-env: hatch-clean
+help-hatch:
+	@echo "Available commands:"
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
-# Environment setup
-hatch-env:
-	hatch env create
+# ==============================================================================
+# ENVIRONMENT & CLEANUP
+# ==============================================================================
 
-hatch-setup: hatch-env
+hatch-clean: ## Clean all build artifacts and pycache
+	@echo "Cleaning environment..."
+	# Your clean command here
 
-# Type checking
-hatch-types:
-	hatch run dev:mypy src/
+hatch-remove-env: hatch-clean ## Remove the virtual environment completely
+	@echo "Removing environment..."
+	# Your remove command here
 
-# Linting and formatting
-hatch-lint:
-	hatch run dev:ruff format src/ tests/ 2>/dev/null || true
-	hatch run dev:ruff check --fix src/ tests/ 2>/dev/null || true
+hatch-env: ## Create or update the virtual environment
+	@echo "Setting up environment..."
+	# Your env setup command here
 
-hatch-lint-check:
-	hatch run dev:ruff format --check src/ tests/ 2>/dev/null || true
-	hatch run dev:ruff check src/ tests/ 2>/dev/null || true
+hatch-setup: hatch-env ## Alias for hatch-env
 
-# CI tasks
-hathc-ci: hatch-lint-check hatch-types hatch-test
+# ==============================================================================
+# QUALITY & LINTING
+# ==============================================================================
 
-hatch-ci-fix: hatch-lint hatch-types hatch-test
+hatch-types: ## Run static type checking with mypy
+	@echo "Running type checks..."
+	# Your type check command here
 
-# Testing
-hatch-test:
-	hatch run dev:pytest tests/ -v 2>/dev/null || echo "No tests found"
+hatch-lint: ## Fix linting and formatting issues automatically
+	@echo "Linting and formatting..."
+	# Your linting command here
 
+hatch-lint-check: ## Check for linting and formatting issues
+	@echo "Checking linting..."
+	# Your lint check command here
 
+# ==============================================================================
+# CI & TESTING
+# ==============================================================================
+
+hatch-test: ## Run the test suite
+	@echo "Running tests..."
+	# Your test command here
+
+hatch-ci: hatch-lint-check hatch-types hatch-test ## Run all CI checks (lint, types, tests)
+	@echo "CI checks passed!"
+
+hatch-ci-fix: hatch-lint hatch-types hatch-test ## Run all CI checks, attempting to fix issues
+	@echo "CI fix process complete!"

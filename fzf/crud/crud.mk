@@ -2,15 +2,15 @@
 # Composable selection → action targets
 
 # Include dependencies
-include $(MK_DIR)/ui/ui.mk
--include $(MK_DIR)/general/excludes.mk
+include $(MK_PATH)/ui/ui.mk
+-include $(MK_PATH)/general/excludes.mk
 
 # Source paths
 FZF_CRUD_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 
 # Run macro for CRUD operations
 define FZF_CRUD_RUN
-	bash -c 'source $(MK_DIR)/ui/ui.sh && source $(MK_DIR)/fzf/crud/crud.sh && $(1)'
+	bash -c 'source $(MK_PATH)/ui/ui.sh && source $(MK_PATH)/fzf/crud/crud.sh && $(1)'
 endef
 
 # CREATE operations
@@ -18,7 +18,7 @@ endef
 fzf-create: ## Create file/dir with FZF selection
 	@$(call FZF_CRUD_RUN, \
 		dir=$$(select_dir "." "Select parent directory: ") || exit 1; \
-		$(MK_DIR)/ui/ui.sh && info "Selected: $$dir"; \
+		$(MK_PATH)/ui/ui.sh && info "Selected: $$dir"; \
 		read -p "Name for new item: " name; \
 		read -p "Type (file/dir): " type; \
 		if [ "$$type" = "dir" ]; then \
@@ -59,7 +59,7 @@ fzf-edit: ## Edit file with FZF selection
 fzf-rename: ## Rename item with FZF selection
 	@$(call FZF_CRUD_RUN, \
 		item=$$(select_item "." "Select item to rename: ") || exit 1; \
-		$(MK_DIR)/ui/ui.sh && info "Selected: $$item"; \
+		$(MK_PATH)/ui/ui.sh && info "Selected: $$item"; \
 		read -p "New name: " new_name; \
 		dir=$$(dirname "$$item"); \
 		mv "$$item" "$$dir/$$new_name" && ok "Renamed to: $$dir/$$new_name")
@@ -68,7 +68,7 @@ fzf-rename: ## Rename item with FZF selection
 fzf-move: ## Move item with FZF selection
 	@$(call FZF_CRUD_RUN, \
 		item=$$(select_item "." "Select item to move: ") || exit 1; \
-		$(MK_DIR)/ui/ui.sh && info "Selected: $$item"; \
+		$(MK_PATH)/ui/ui.sh && info "Selected: $$item"; \
 		dest=$$(select_dir "." "Select destination: ") || exit 1; \
 		mv "$$item" "$$dest/" && ok "Moved to: $$dest/")
 
@@ -77,7 +77,7 @@ fzf-move: ## Move item with FZF selection
 fzf-delete: ## Delete item with FZF selection and confirmation
 	@$(call FZF_CRUD_RUN, \
 		item=$$(select_item "." "Select item to delete: ") || exit 1; \
-		source $(MK_DIR)/ui/ui.sh && \
+		source $(MK_PATH)/ui/ui.sh && \
 		if confirm "Delete $$item?"; then \
 			rm -rf "$$item" && ok "Deleted: $$item"; \
 		else \
@@ -88,7 +88,7 @@ fzf-delete: ## Delete item with FZF selection and confirmation
 fzf-delete-multi: ## Delete multiple items with FZF multi-select
 	@$(call FZF_CRUD_RUN, \
 		items=$$(select_multiple "." "Select items to delete (TAB to mark): " "all") || exit 1; \
-		source $(MK_DIR)/ui/ui.sh && \
+		source $(MK_PATH)/ui/ui.sh && \
 		count=$$(echo "$$items" | wc -l | tr -d " "); \
 		if confirm "Delete $$count items?"; then \
 			echo "$$items" | while read -r item; do \
@@ -103,7 +103,7 @@ fzf-delete-multi: ## Delete multiple items with FZF multi-select
 fzf-dir-then-create: ## Select directory then create file in it
 	@$(call FZF_CRUD_RUN, \
 		dir=$$(select_dir "." "Select directory: ") || exit 1; \
-		source $(MK_DIR)/ui/ui.sh && info "Selected: $$dir"; \
+		source $(MK_PATH)/ui/ui.sh && info "Selected: $$dir"; \
 		read -p "File name: " name; \
 		touch "$$dir/$$name" && ok "Created: $$dir/$$name"; \
 		if confirm "Edit now?"; then \
@@ -127,23 +127,25 @@ test-fzf-crud: ## Test FZF CRUD operations
 # Help for CRUD operations
 .PHONY: fzf-crud-help
 fzf-crud-help: ## Show FZF CRUD operations help
+	@echo
 	@echo "FZF CRUD Operations:"
 	@echo ""
-	@echo "CREATE:"
-	@echo "  make fzf-create        - Create file or directory"
+	@echo "  CREATE:"
+	@echo "    make fzf-create        - Create file or directory"
 	@echo ""
-	@echo "READ:"
-	@echo "  make fzf-read          - View file contents"
-	@echo "  make fzf-tree          - Show directory tree"
+	@echo "  READ:"
+	@echo "    make fzf-read          - View file contents"
+	@echo "    make fzf-tree          - Show directory tree"
 	@echo ""
-	@echo "UPDATE:"
-	@echo "  make fzf-edit          - Edit file"
-	@echo "  make fzf-rename        - Rename file or directory"
-	@echo "  make fzf-move          - Move file or directory"
+	@echo "  UPDATE:"
+	@echo "    make fzf-edit          - Edit file"
+	@echo "    make fzf-rename        - Rename file or directory"
+	@echo "    make fzf-move          - Move file or directory"
 	@echo ""
-	@echo "DELETE:"
-	@echo "  make fzf-delete        - Delete single item"
-	@echo "  make fzf-delete-multi  - Delete multiple items"
+	@echo "  DELETE:"
+	@echo "    make fzf-delete        - Delete single item"
+	@echo "    make fzf-delete-multi  - Delete multiple items"
 	@echo ""
-	@echo "COMPOSITE:"
-	@echo "  make fzf-dir-then-create - Select dir, then create file"
+	@echo "  COMPOSITE:"
+	@echo "    make fzf-dir-then-create - Select dir, then create file"
+	@echo

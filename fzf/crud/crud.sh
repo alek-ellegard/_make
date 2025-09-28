@@ -4,10 +4,10 @@
 
 # --
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-MK_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
+MK_PATH="$(cd "$SCRIPT_DIR/../.." && pwd)"
 # --
 
-source $MK_DIR/ui/ui.sh
+source $MK_PATH/ui/ui.sh
 
 # Get exclude patterns for find command
 _get_exclude_args() {

@@ -1,4 +1,4 @@
 #---
-#include $(MK_DIR)/fzf/base.mk
-include $(MK_DIR)/fzf/crud/*.mk
-include $(MK_DIR)/fzf/helpers/*.mk
+#include $(MK_PATH)/fzf/base.mk
+include $(MK_PATH)/fzf/crud/*.mk
+include $(MK_PATH)/fzf/helpers/*.mk

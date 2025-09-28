@@ -22,20 +22,20 @@ _make/
 
 ```make
 # _make/index.mk (root)
-include $(MK_DIR)/base.mk
-include $(MK_DIR)/general/*.mk
-include $(MK_DIR)/checks/*.mk
-include $(MK_DIR)/hatch/*.mk
-include $(MK_DIR)/fzf/*.mk
-include $(MK_DIR)/ui/*.mk
-include $(MK_DIR)/ai/*.mk
+include $(MK_PATH)/base.mk
+include $(MK_PATH)/general/*.mk
+include $(MK_PATH)/checks/*.mk
+include $(MK_PATH)/hatch/*.mk
+include $(MK_PATH)/fzf/*.mk
+include $(MK_PATH)/ui/*.mk
+include $(MK_PATH)/ai/*.mk
 
 # _make/<domain>/index.mk (domain aggregator)
-include $(MK_DIR)/<domain>/base.mk
-include $(MK_DIR)/<domain>/<subdomain>/*.mk
+include $(MK_PATH)/<domain>/base.mk
+include $(MK_PATH)/<domain>/<subdomain>/*.mk
 
 # Project Makefile (consumer)
-include $(MK_DIR)/index.mk
+include $(MK_PATH)/index.mk
 ```
 
 ### File Conventions
@@ -79,7 +79,7 @@ endef
 
 ```make
 # Project Makefile
-include $(MK_DIR)/index.mk
+include $(MK_PATH)/index.mk
 
 # Now all targets available:
 # - from general/*.mk

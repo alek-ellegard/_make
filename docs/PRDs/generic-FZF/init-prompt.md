@@ -3,7 +3,7 @@
 ### 1. Context Setup
 - [ ] Git branch name: `feat/fzf-crud-generic`
 - [ ] Issue/ticket file: `crud-fzf-generic.issue.md`
-- [ ] Current working directory: `$(MK_DIR)`
+- [ ] Current working directory: `$(MK_PATH)`
 - [ ] Recent commits: (modular makefile system with fzf integration established)
 
 ### 2. Style Declaration

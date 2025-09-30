@@ -1,5 +1,5 @@
 
-gh-feat-pr-merge: ## gh add, commit, push, pr, pr merge, pull
+gh-feat-pr-merge: ## b=<branch> -- gh add, commit, push, pr, pr merge, pull
 	git switch -c "$(b)"
 	git add -A
 	git commit

@@ -1,3 +1,10 @@
+ai: ## init claude with base context
+	@claude @$(MK_PATH)ai/context/base.md @./.claude
+
+ai-py: ## init claude session for py project
+	@mkdir -p .claude
+	@rsync -av $(MK_PATH)ai/context/python/.claude/* .claude
+	@make ai
 
 cursor:
 	cursor
@@ -5,7 +12,7 @@ cursor:
 claude:
 	claude $(p)
 
-help-ai-index-mk:
+mk-ai:
 	@echo
 	@echo "code:"
 	@echo "  code"

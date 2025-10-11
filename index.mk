@@ -16,6 +16,7 @@ include $(MK_PATH)/checks/*.mk
 include $(MK_PATH)/docker/*.mk
 include $(MK_PATH)/hatch/*.mk
 include $(MK_PATH)/fzf/*.mk
+include $(MK_PATH)/ssh/*.mk
 include $(MK_PATH)/ui/*.mk
 include $(MK_PATH)/ai/*.mk
 include $(MK_PATH)/gh/*.mk

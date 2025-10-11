@@ -1,6 +1,7 @@
 
 
 time := $(shell date '+%H:%M:%S')
+time- := $(shell date '+%H-%M-%S')
 
 # convenience named date vars
 month-year := $(shell date '+%m-%Y')
